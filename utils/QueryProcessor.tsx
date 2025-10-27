@@ -11,6 +11,14 @@ export default function QueryProcessor(query: string): string {
     return "Faiz";
   }
 
+  // Handle math operations
+  const mathMatch = query.toLowerCase().match(/what\s+is\s+(\d+)\s+plus\s+(\d+)/);
+  if (mathMatch) {
+    const num1 = parseInt(mathMatch[1]);
+    const num2 = parseInt(mathMatch[2]);
+    return (num1 + num2).toString();
+  }
+
   if (query.toLowerCase().includes("name")) {
     return "Rohan";
   }

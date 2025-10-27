@@ -24,5 +24,11 @@ describe("QueryProcessor", () => {
         expect(response).toBe((
             "Faiz"
           ));
-    })
+    });
+
+    test('should handle math addition', () => {
+        const query = "What is 7 plus 43?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("50");
+    });
 });
