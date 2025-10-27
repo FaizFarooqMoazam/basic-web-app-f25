@@ -19,6 +19,13 @@ export default function QueryProcessor(query: string): string {
     return (num1 + num2).toString();
   }
 
+  // Handle largest number queries
+  const largestMatch = query.toLowerCase().match(/which.*largest.*?(\d+).*?(\d+).*?(\d+)/);
+  if (largestMatch) {
+    const numbers = [parseInt(largestMatch[1]), parseInt(largestMatch[2]), parseInt(largestMatch[3])];
+    return Math.max(...numbers).toString();
+  }
+
   if (query.toLowerCase().includes("name")) {
     return "Rohan";
   }

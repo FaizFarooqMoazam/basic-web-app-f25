@@ -31,4 +31,15 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("50");
     });
+
+    test('should handle more math addition cases', () => {
+        expect(QueryProcessor("What is 21 plus 48?")).toBe("69");
+        expect(QueryProcessor("What is 76 plus 45?")).toBe("121");
+    });
+
+    test('should find largest number', () => {
+        const query = "Which of the following numbers is the largest: 52, 84, 76?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("84");
+    });
 });
