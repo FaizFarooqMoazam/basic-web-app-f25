@@ -28,10 +28,9 @@ export default function QueryProcessor(query: string): string {
   }
 
   // Handle square and cube queries
-  const squareAndCubeMatch = query.toLowerCase().match(/which.*both.*square.*cube.*?([\d,\s]+)/);
-  if (squareAndCubeMatch) {
-    const numbersStr = squareAndCubeMatch[1];
-    const numbers = numbersStr.match(/\d+/g)?.map(n => parseInt(n)) || [];
+  if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
+    // Extract all numbers from the query
+    const numbers = query.match(/\d+/g)?.map(n => parseInt(n)) || [];
     
     // A number is both a perfect square and perfect cube if it's a perfect sixth power
     for (const num of numbers) {
@@ -43,11 +42,10 @@ export default function QueryProcessor(query: string): string {
     return "";
   }
 
-  // Handle largest number queries - improved regex
-  const largestMatch = query.toLowerCase().match(/which.*largest.*?([\d,\s:]+)/);
-  if (largestMatch) {
-    const numbersStr = largestMatch[1];
-    const numbers = numbersStr.match(/\d+/g)?.map(n => parseInt(n)) || [];
+  // Handle largest number queries - more flexible regex
+  if (query.toLowerCase().includes("largest")) {
+    // Extract all numbers from the query
+    const numbers = query.match(/\d+/g)?.map(n => parseInt(n)) || [];
     if (numbers.length > 0) {
       return Math.max(...numbers).toString();
     }
